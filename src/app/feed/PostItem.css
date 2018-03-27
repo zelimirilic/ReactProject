@@ -1,0 +1,23 @@
+p{
+    color:white;
+    padding: 0 20px 5px 20px;
+    display: inline-block;
+}
+img {
+    width: 95%;
+    height: auto;
+    margin: 0 auto
+}
+
+iframe {
+
+    position: relative;
+    display:block;
+    width:95%;
+    height:100%;
+    margin: 0 auto;
+}
+.comments{
+    float:right;
+
+}
