@@ -1,13 +1,33 @@
-import React, { Component } from 'react'
-import { ImagePost } from "./ImagePost"
-import { VideoPost } from "./VideoPost"
-import { TextPost } from "./TextPost"
-import "./PostItem.css"
+import React, { Component } from 'react';
+import { ImagePost } from "./ImagePost";
+import { VideoPost } from "./VideoPost";
+import { TextPost } from "./TextPost";
+import "./PostItem.css";
+import { postService } from "../../services/PostService"
 
 
 
 
 export class PostItem extends Component {
+    state = {
+        posts: []
+    }
+
+
+    componentDidMount() {
+        this.loadPosts();
+    }
+
+    loadPosts = () => {
+        postService.getData()
+            .then(myPosts => {
+                this.setState({
+                    posts: myPosts
+                })
+            })
+    }
+
+
 
     testTypeOfPost = () => {
         if (this.props.type === 'image') {
