@@ -1,4 +1,7 @@
-import { Post } from '../entities/Post'
+
+import { VideoPost } from "../entities/Post";
+import { ImagePost } from "../entities/Post";
+import { TextPost } from "../entities/Post";
 
 class PostService {
     getData() {
@@ -13,14 +16,28 @@ class PostService {
 
             .then(response => response.json())
             .then(response => {
-                console.log(response);
 
                 return response.map(post => {
-                    return new Post(post)
+                    if (post.type === 'image') {
+                        return new ImagePost(post);
+                    }
+                    if (post.type === 'video') {
+                        return new VideoPost(post);
+                    }
+
+                    if (post.type === 'text') {
+                        return new TextPost(post);
+                    }
                 })
 
             })
     }
+
+
+
+
+
+
 
 
 
