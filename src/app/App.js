@@ -3,7 +3,9 @@ import './App.css';
 import { Header } from './partials/Header';
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
 import { Footer } from './partials/Footer';
-import { FeedPage } from "./feed/FeedPage"
+import { FeedPage } from "./feed/FeedPage";
+
+
 
 class App extends Component {
   render() {
