@@ -3,7 +3,8 @@ import { ImagePost } from "./ImagePost";
 import { VideoPost } from "./VideoPost";
 import { TextPost } from "./TextPost";
 import "./PostItem.css";
-import { postService } from "../../services/PostService"
+import { postService } from "../../services/PostService";
+import { Link } from "react-router-dom"
 
 
 
@@ -35,12 +36,12 @@ export class PostItem extends Component {
         return this.state.posts.map(post => {
 
             if (post.isImage()) {
-                return <ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} />
+                return <Link to={`/post/image/${post.id}`}><ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} /></Link>
             }
             else if (post.isVideo()) {
-                return <VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} />
+                return <Link to={`/post/video/${post.id}`}><VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} /></Link>
             } else {
-                return <TextPost text={post.text} key={post.id} comments={post.commentsNum} />
+                return <Link to={`/post/text/${post.id}`}><TextPost text={post.text} key={post.id} comments={post.commentsNum} /></Link>
             }
         })
     }
@@ -48,13 +49,13 @@ export class PostItem extends Component {
     render() {
         return (
             <div className="row">
-
                 {this.testTypeOfPost()}
             </div>
 
         )
     }
 }
+
 
 
 

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { PostItem } from "./PostItem"
+import React, { Component } from 'react';
+import { PostItem } from "./PostItem";
 
 export class FeedPage extends Component {
 
