@@ -1,42 +1,63 @@
-import React, { Component } from 'react'
-import { ImagePost } from "./ImagePost"
-import { VideoPost } from "./VideoPost"
-import { TextPost } from "./TextPost"
-import "./PostItem.css"
+import React, { Component } from 'react';
+import { ImagePost } from "./ImagePost";
+import { VideoPost } from "./VideoPost";
+import { TextPost } from "./TextPost";
+import "./PostItem.css";
+import { postService } from "../../services/PostService"
 
 
 
 
 export class PostItem extends Component {
+    state = {
+        posts: []
+
+    }
+
+
+
+    componentDidMount() {
+        this.loadPosts();
+    }
+
+    loadPosts = () => {
+        postService.getData()
+            .then(myPosts => {
+                console.log(myPosts);
+                this.setState({
+
+                    posts: myPosts
+                })
+            })
+    }
 
     testTypeOfPost = () => {
-        if (this.props.type === 'image') {
-            return <ImagePost />
-        }
-        if (this.props.type === 'video') {
-            return <VideoPost />
-        }
+        return this.state.posts.map(post => {
 
-        if (this.props.type === 'text') {
-            return <TextPost />
-        }
+            if (post.isImage()) {
+                return <ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} />
+            }
+            else if (post.isVideo()) {
+                return <VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} />
+            } else {
+                return <TextPost text={post.text} key={post.id} comments={post.commentsNum} />
+            }
+        })
     }
 
     render() {
         return (
             <div className="row">
-                <div className="col s12 m6 l9">
-                    <div className="card blue-grey darken-1">
-                        <div className="card-content white-text ">
-                            {this.testTypeOfPost()}
-                        </div>
-                        <div className="card-action">
-                            <p href="#">Post</p>
-                            <p className="comments">13 Comments</p>
-                        </div>
-                    </div>
-                </div>
+
+                {this.testTypeOfPost()}
             </div>
+
         )
     }
 }
+
+
+
+
+
+
