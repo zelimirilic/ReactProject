@@ -36,12 +36,12 @@ export class PostItem extends Component {
         return this.state.posts.map(post => {
 
             if (post.isImage()) {
-                return <Link to={`/post/image/${post.id}`}><ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} /></Link>
+                return <Link to={`/post/image/${post.id}`} key={post.id}><ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} /></Link>
             }
             else if (post.isVideo()) {
-                return <Link to={`/post/video/${post.id}`}><VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} /></Link>
+                return <Link to={`/post/video/${post.id}`} key={post.id}><VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} /></Link>
             } else {
-                return <Link to={`/post/text/${post.id}`}><TextPost text={post.text} key={post.id} comments={post.commentsNum} /></Link>
+                return <Link to={`/post/text/${post.id}`} key={post.id} ><TextPost text={post.text} key={post.id} comments={post.commentsNum} /></Link>
             }
         })
     }
