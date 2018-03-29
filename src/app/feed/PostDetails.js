@@ -9,7 +9,8 @@ export class PostDetails extends Component {
         super(props);
 
         this.state = {
-            post: null
+            post: null,
+            commentBody: ""
         }
     }
 
@@ -64,6 +65,26 @@ export class PostDetails extends Component {
         }
     }
 
+    getCommentValueHandler = (event) => {
+        this.setState({
+            commentBody: event.target.value
+        })
+
+    }
+    postComment = (event) => {
+        event.preventDefault();
+        return fetch('http://bitbookapi.azurewebsites.net/api/Comments', {
+            method: "POST",
+            body: JSON.stringify({
+
+            })
+        })
+
+
+    }
+
+
+
     render() {
         if (!this.state.post) {
             return <p>Loading...</p>
@@ -73,18 +94,18 @@ export class PostDetails extends Component {
             <div className="container ">
                 {this.renderPost()}
 
-                {/* <form action="#">
+                <form action="#">
                     <div className="file-field input-field">
-                        <button className="btn waves-effect waves-light" type="submit" name="action">Send
+                        <button onClick={this.postComment} className="btn waves-effect waves-light" type="submit" name="action">Send
                      <i className="material-icons right">send</i>
                         </button>
 
 
                         <div className="file-path-wrapper">
-                            <input className="materialize-textarea" placeholder="Add your comments" type="text" />
+                            <input onChange={this.getCommentValueHandler} className="materialize-textarea" placeholder="Add your comments" type="text" />
                         </div>
                     </div>
-                </form> */}
+                </form>
 
                 <div className="col s12 m7">
                     <CommentList postId={this.state.post.id} key={this.state.post.id} />
