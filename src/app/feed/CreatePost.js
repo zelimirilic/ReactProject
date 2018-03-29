@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import "./CreatePost.css";
+import { NewTextPost } from './newPosts/NewTextPost';
+import { NewVideoPost } from './newPosts/NewVideoPost';
+import { NewImagePost } from './newPosts/NewImagePost';
 
 class CreatePost extends Component {
 
@@ -34,34 +37,21 @@ class CreatePost extends Component {
         this.setState({ modalIsOpen: false });
     }
 
+    setSubtitle = (subtitle) => {
+        this.subtitle = subtitle;
+    }
+
     renderAddPostWindow() {
         if (this.state.postType === 'image') {
-            return (
-                <div className='newPostDiv '>
-                    <h4 ref={subtitle => this.subtitle = subtitle}>New image post</h4>
-                    <h6>Post content</h6>
-                    <textarea id="textarea1" className="materialize-textarea"></textarea>
-                    <button className='light-blue' onClick={this.closeModal}>Post</button>
-                </div>
-            )
+            return <NewImagePost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
+
+
         } else if (this.state.postType === 'video') {
-            return (
-                <div className='newPostDiv'>
-                    <h4 ref={subtitle => this.subtitle = subtitle}>New video post</h4>
-                    <h6>YouTube video link</h6>
-                    <textarea id="textarea1" className="materialize-textarea"></textarea>
-                    <button className='light-blue' onClick={this.closeModal}>Post</button>
-                </div>
-            )
+            return <NewVideoPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
+
+
         } else if (this.state.postType === 'text') {
-            return (
-                <div className='newPostDiv'>
-                    <h4 ref={subtitle => this.subtitle = subtitle}>New post</h4>
-                    <h6>Post content</h6>
-                    <textarea id="textarea1" className="materialize-textarea"></textarea>
-                    <button onClick={this.closeModal} className='light-blue'>Post</button>
-                </div>
-            )
+            return <NewTextPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
         }
     }
 
@@ -85,6 +75,7 @@ class CreatePost extends Component {
                         <li><a className="btn-floating blue" onClick={this.openModal}><i id='text' className="material-icons">text_fields</i></a></li>
                     </ul>
                 </div>
+
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
