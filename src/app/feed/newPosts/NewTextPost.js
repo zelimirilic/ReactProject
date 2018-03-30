@@ -26,7 +26,7 @@ export class NewTextPost extends Component {
         this.props.closeModal();
 
         const body = {
-            textUrl: this.state.newBody,
+            text: this.state.newBody,
         }
 
 

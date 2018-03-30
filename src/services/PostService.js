@@ -5,10 +5,8 @@ class PostService extends Component {
 
     createTextPost(body) {
         const url = "/api/TextPosts"
-        const newBody = {
-            text: body
-        }
-        return this.createPost(newBody, url)
+
+        return this.createPost(body, url)
     }
 
     createVideoPost(body) {

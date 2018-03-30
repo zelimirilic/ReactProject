@@ -3,3 +3,7 @@
     width: 90%;
     }
 
+.validation-error {
+    display: block;
+    color: red;
+}

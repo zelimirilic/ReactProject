@@ -55,6 +55,9 @@ class CreatePost extends Component {
         }
     }
 
+
+
+
     render() {
         const modalStyle = {
             content: {

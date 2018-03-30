@@ -10,13 +10,11 @@ export class NewImagePost extends Component {
 
         this.state = {
             newBody: "",
-            isValidUrl: false,
-            showError: false
+
         }
     }
 
-    isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
-    showError = () => (this.state.showError) ? "isInvalid" : "isValid";
+
 
     changeBodyHandler = (event) => {
         this.setState({
@@ -28,16 +26,37 @@ export class NewImagePost extends Component {
         event.preventDefault();
         console.log(this.state.newBody);
 
-        this.props.closeModal();
 
         const body = {
             imageUrl: this.state.newBody,
         }
 
-        postService.createImagePost(body);
+        //Niz svih dozvoljenih formata
 
+        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png'];
+
+        for (let i = 0; i < extensionLists.length; i++) {
+            if (body.imageUrl.includes(extensionLists[i])) {
+                this.props.closeModal();
+                return postService.createImagePost(body)
+
+            }
+            else {
+                return console.log('Please select a valid image')
+
+            }
+        }
 
     }
+
+
+    // else if (!videoChosen && !isValidFileType(file.val(), 'video')) {
+    //     return failValidation('Please select a valid video file.');
+    // }
+    // else (!textChosen && !isValidFileType(file.val(), 'String')) {
+    //     return failValidation('Please select a valid text file.');
+    // }
+
 
     render() {
 
