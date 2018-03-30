@@ -30,8 +30,8 @@ export class NewTextPost extends Component {
         }
 
 
-        postService.createTextPost(body);
-
+        postService.createTextPost(body)
+            .then(() => this.props.onPostCreate())
 
     }
 

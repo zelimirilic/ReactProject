@@ -10,7 +10,7 @@ export class NewImagePost extends Component {
 
         this.state = {
             newBody: "",
-
+            error: null
         }
     }
 
@@ -18,44 +18,43 @@ export class NewImagePost extends Component {
 
     changeBodyHandler = (event) => {
         this.setState({
-            newBody: event.target.value
+            newBody: event.target.value,
+            error: null
         })
+    }
+
+    isValid = (value) => {
+        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png'];
+
+        for (let i = 0; i < extensionLists.length; i++) {
+            if (value.includes(extensionLists[i])) {
+                return true
+            }
+        }
+
+        return false
     }
 
     fetchPost = (event) => {
         event.preventDefault();
-        console.log(this.state.newBody);
+        const imageUrl = this.state.newBody;
 
+        if (!this.isValid(imageUrl)) {
+            return this.setState({
+                error: 'Please select a valid image'
+            });
+        }
 
         const body = {
-            imageUrl: this.state.newBody,
+            imageUrl: imageUrl
         }
 
-        //Niz svih dozvoljenih formata
+        postService.createImagePost(body)
+            .then(() => this.props.onPostCreate())
 
-        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png'];
 
-        for (let i = 0; i < extensionLists.length; i++) {
-            if (body.imageUrl.includes(extensionLists[i])) {
-                this.props.closeModal();
-                return postService.createImagePost(body)
-
-            }
-            else {
-                return console.log('Please select a valid image')
-
-            }
-        }
 
     }
-
-
-    // else if (!videoChosen && !isValidFileType(file.val(), 'video')) {
-    //     return failValidation('Please select a valid video file.');
-    // }
-    // else (!textChosen && !isValidFileType(file.val(), 'String')) {
-    //     return failValidation('Please select a valid text file.');
-    // }
 
 
     render() {
@@ -64,7 +63,8 @@ export class NewImagePost extends Component {
             <div className='newPostDiv '>
                 <h4 ref={subtitle => this.props.setSubtitle(subtitle)}>New image post</h4>
                 <h6>Post content</h6>
-                <input id="textarea2" value={this.state.newBody} onChange={this.changeBodyHandler} className="materialize-textarea"></input>
+                <input onChange={this.changeBodyHandler} id="textarea2" className="materialize-textarea"></input>
+                <p className="validation-error">{this.state.error}</p>
                 <button onClick={this.fetchPost} className='light-blue' >Post</button>
 
             </div>

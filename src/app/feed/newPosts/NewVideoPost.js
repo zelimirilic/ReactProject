@@ -28,7 +28,9 @@ export class NewVideoPost extends Component {
     fetchPost = (event) => {
         event.preventDefault();
 
-        const videoUrl = this.state.newBody;
+        const videoUrlYouTube = this.state.newBody;
+
+        const videoUrl = videoUrlYouTube.replace('watch?v=', 'embed/')
 
         if (!this.isValid(videoUrl)) {
             return this.setState({
@@ -43,7 +45,7 @@ export class NewVideoPost extends Component {
 
 
         postService.createVideoPost(body)
-            .then(() => this.props.closeModal())
+            .then(() => this.props.onPostCreate())
     }
 
 

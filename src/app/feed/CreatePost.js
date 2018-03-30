@@ -37,21 +37,27 @@ class CreatePost extends Component {
         this.setState({ modalIsOpen: false });
     }
 
+    onPostCreate = () => {
+        this.closeModal();
+        this.props.refreshPostList();
+    }
+
+
     setSubtitle = (subtitle) => {
         this.subtitle = subtitle;
     }
 
     renderAddPostWindow() {
         if (this.state.postType === 'image') {
-            return <NewImagePost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
+            return <NewImagePost setSubtitle={this.setSubtitle} closeModal={this.closeModal} onPostCreate={this.onPostCreate} />
 
 
         } else if (this.state.postType === 'video') {
-            return <NewVideoPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
+            return <NewVideoPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} onPostCreate={this.onPostCreate} />
 
 
         } else if (this.state.postType === 'text') {
-            return <NewTextPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} />
+            return <NewTextPost setSubtitle={this.setSubtitle} closeModal={this.closeModal} onPostCreate={this.onPostCreate} />
         }
     }
 
