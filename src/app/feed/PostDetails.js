@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PostItem.css';
+import './FeedPage.css';
 import { CommentList } from "./comments/CommentList"
 import { postService } from "../../services/PostService";
 import { commentService } from "../../services/CommentService";

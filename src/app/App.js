@@ -4,6 +4,7 @@ import { Header } from './partials/Header';
 import { Route, Switch } from 'react-router-dom'
 import { Footer } from './partials/Footer';
 import { FeedPage } from "./feed/FeedPage";
+
 import { PostDetails } from "./feed/PostDetails"
 import { ProfilePage } from "./profile/ProfilePage"
 

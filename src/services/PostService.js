@@ -1,9 +1,44 @@
-
 import { VideoPost } from "../entities/Post";
 import { ImagePost } from "../entities/Post";
 import { TextPost } from "../entities/Post";
 
 class PostService {
+
+
+    createTextPost(body) {
+        const url = "/api/TextPosts"
+
+        return this.createPost(body, url)
+    }
+
+    createVideoPost(body) {
+        const url = "/api/VideoPosts"
+        return this.createPost(body, url)
+    }
+
+
+    createImagePost(body) {
+        const url = '/api/ImagePosts'
+        return this.createPost(body, url)
+    }
+
+    createPost(body, url) {
+        const fullUrl = "http://bitbookapi.azurewebsites.net" + url;
+        return fetch(fullUrl, {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+
+            }
+        })
+            .catch(error => {
+                return "Error!"
+            })
+    }
+
     getData() {
         return fetch('http://bitbookapi.azurewebsites.net/api/posts', {
             headers: {
@@ -68,8 +103,5 @@ class PostService {
 
 
 }
-
-
-
 
 export const postService = new PostService()
