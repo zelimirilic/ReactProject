@@ -3,7 +3,8 @@ import { userService } from "../../../services/UserService"
 
 export class CommentItem extends Component {
     state = {
-        author: null
+        author: null,
+
     }
 
     componentDidMount() {

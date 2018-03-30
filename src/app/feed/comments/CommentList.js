@@ -3,22 +3,8 @@ import { commentService } from "../../../services/CommentService";
 import { CommentItem } from "./CommentItem"
 
 export class CommentList extends Component {
-    state = {
-        comments: []
-    }
-
-
-    componentDidMount() {
-        this.loadComments();
-    }
-
-    loadComments = () => {
-        commentService.getCommentData(this.props.postId)
-            .then(comments => {
-                this.setState({
-                    comments
-                })
-            })
+    constructor(props) {
+        super(props)
     }
 
     renderEmptyComments = () => {
@@ -35,7 +21,7 @@ export class CommentList extends Component {
     }
 
     renderComments = () => {
-        return this.state.comments.map(comment => {
+        return this.props.comments.map(comment => {
             return <CommentItem body={comment.body} key={comment.id} authorId={comment.authorId} />
         })
     }
@@ -44,7 +30,7 @@ export class CommentList extends Component {
     render() {
         return (
             <div>
-                {!this.state.comments.length
+                {!this.props.comments.length
                     ? this.renderEmptyComments()
                     : this.renderComments()
                 }

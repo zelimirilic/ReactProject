@@ -21,11 +21,11 @@ class PostService {
                     if (post.type === 'image') {
                         return new ImagePost(post);
                     }
-                    if (post.type === 'video') {
+                    else if (post.type === 'video') {
                         return new VideoPost(post);
                     }
 
-                    if (post.type === 'text') {
+                    else {
                         return new TextPost(post);
                     }
                 })
@@ -65,6 +65,8 @@ class PostService {
             })
             .catch(error => console.error("Error: ", error))
     }
+
+
 }
 
 

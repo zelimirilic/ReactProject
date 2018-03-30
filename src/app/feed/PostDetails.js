@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './PostItem.css';
-import { postService } from "../../services/PostService";
 import { CommentList } from "./comments/CommentList"
+import { postService } from "../../services/PostService";
+import { commentService } from "../../services/CommentService";
 
 
 export class PostDetails extends Component {
@@ -9,16 +10,26 @@ export class PostDetails extends Component {
         super(props);
 
         this.state = {
-            post: null
+            post: null,
+            comments: [],
+            commentBody: ""
         }
+
+        this.postId = null;
+        this.type = null;
     }
 
 
+
+    onInit = () => {
+        this.postId = this.props.match.params.id;
+        this.type = this.props.match.params.type;
+    }
+
     componentWillReceiveProps = (nextProps) => {
-        const { id, type } = nextProps.match.params
+        this.onInit();
 
-
-        postService.getPostDetails(type, id)
+        postService.getPostDetails(this.type, this.postId)
             .then(post => {
                 this.setState({
                     post
@@ -27,13 +38,20 @@ export class PostDetails extends Component {
     }
 
     componentDidMount = () => {
-        const { id, type } = this.props.match.params
+        this.onInit();
 
-
-        postService.getPostDetails(type, id)
+        postService.getPostDetails(this.type, this.postId)
             .then(post => {
                 this.setState({
                     post
+                })
+            })
+
+
+        commentService.getCommentData(this.postId)
+            .then(comments => {
+                this.setState({
+                    comments
                 })
             })
     }
@@ -64,6 +82,40 @@ export class PostDetails extends Component {
         }
     }
 
+    getCommentValueHandler = (event) => {
+        this.setState({
+            commentBody: event.target.value
+        })
+
+
+    }
+
+    postComment = (event) => {
+        event.preventDefault();
+
+        const data = {
+            body: this.state.commentBody,
+            postId: this.postId
+        }
+
+
+        commentService.postCommentData(data)
+            .then(() => {
+
+
+                commentService.getCommentData(this.postId)
+                    .then(comments => {
+                        this.setState({
+                            comments
+                        })
+                    })
+            })
+
+        this.setState({ commentBody: "" })
+
+    }
+
+
     render() {
         if (!this.state.post) {
             return <p>Loading...</p>
@@ -73,21 +125,21 @@ export class PostDetails extends Component {
             <div className="container ">
                 {this.renderPost()}
 
-                {/* <form action="#">
+                <form action="#">
                     <div className="file-field input-field">
-                        <button className="btn waves-effect waves-light" type="submit" name="action">Send
+                        <button onClick={this.postComment} disabled={!this.state.commentBody} className="btn waves-effect waves-light" type="submit" name="action">Send
                      <i className="material-icons right">send</i>
                         </button>
 
 
                         <div className="file-path-wrapper">
-                            <input className="materialize-textarea" placeholder="Add your comments" type="text" />
+                            <input onChange={this.getCommentValueHandler} value={this.state.commentBody} className="materialize-textarea" placeholder="Add your comments" type="text" />
                         </div>
                     </div>
-                </form> */}
+                </form>
 
                 <div className="col s12 m7">
-                    <CommentList postId={this.state.post.id} key={this.state.post.id} />
+                    <CommentList comments={this.state.comments} />
                 </div >
             </div>
         )
