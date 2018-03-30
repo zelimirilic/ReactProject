@@ -1,42 +1,62 @@
-import React, { Component } from 'react'
-import { ImagePost } from "./ImagePost"
-import { VideoPost } from "./VideoPost"
-import { TextPost } from "./TextPost"
-import "./PostItem.css"
+import React, { Component } from 'react';
+import { ImagePost } from "./ImagePost";
+import { VideoPost } from "./VideoPost";
+import { TextPost } from "./TextPost";
+import "./PostItem.css";
+import { postService } from "../../services/PostService";
+import { Link } from "react-router-dom"
 
 
 
 
 export class PostItem extends Component {
+    state = {
+        posts: []
+
+    }
+
+    componentDidMount() {
+        this.loadPosts();
+    }
+
+    loadPosts = () => {
+        postService.getData()
+            .then(myPosts => {
+                console.log(myPosts);
+                this.setState({
+
+                    posts: myPosts
+                })
+            })
+    }
 
     testTypeOfPost = () => {
-        if (this.props.type === 'image') {
-            return <ImagePost />
-        }
-        if (this.props.type === 'video') {
-            return <VideoPost />
-        }
+        return this.state.posts.map(post => {
 
-        if (this.props.type === 'text') {
-            return <TextPost />
-        }
+            if (post.isImage()) {
+                return <Link to={`/post/image/${post.id}`} key={post.id}><ImagePost url={post.imageUrl} key={post.id} comments={post.commentsNum} /></Link>
+            }
+            else if (post.isVideo()) {
+                return <Link to={`/post/video/${post.id}`} key={post.id}><VideoPost url={post.videoUrl} key={post.id} comments={post.commentsNum} /></Link>
+            } else {
+                return <Link to={`/post/text/${post.id}`} key={post.id} ><TextPost text={post.text} key={post.id} comments={post.commentsNum} /></Link>
+            }
+        })
     }
 
     render() {
         return (
             <div className="row">
-                <div className="col s12 m6 l9">
-                    <div className="card blue-grey darken-1">
-                        <div className="card-content white-text ">
-                            {this.testTypeOfPost()}
-                        </div>
-                        <div className="card-action">
-                            <p href="#">Post</p>
-                            <p className="comments">13 Comments</p>
-                        </div>
-                    </div>
-                </div>
+                {this.testTypeOfPost()}
             </div>
+
         )
     }
 }
+
+
+
+
+
+
+

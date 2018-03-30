@@ -1,20 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { PostItem } from "./PostItem"
 import { CreatePost } from './CreatePost'
+
 
 export class FeedPage extends Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
                 <div className="container">
-                    <PostItem type="image" />
-                    <PostItem type="video" />
-                    <PostItem type="text" />
-                    <CreatePost />
+                    <PostItem />
                 </div>
-
-            </div>
+                <CreatePost />
+            </Fragment>
         )
     }
 
