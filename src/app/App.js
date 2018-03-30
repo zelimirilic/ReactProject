@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import { Footer } from './partials/Footer';
 import { FeedPage } from "./feed/FeedPage";
 import { PostDetails } from "./feed/PostDetails"
+import { ProfilePage } from "./profile/ProfilePage"
 
 class App extends Component {
   render() {
@@ -13,9 +14,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/post/:type/:id" component={PostDetails} />
-          <Route path="/feed" component={FeedPage} />
           <Route path="/people" component={PeoplePage} />
           <Route path="/profile" component={ProfilePage} />
+          <Route path="/" component={FeedPage} />
         </Switch>
         <Footer />
       </div>
@@ -24,6 +25,6 @@ class App extends Component {
 }
 
 const PeoplePage = () => <div>PeoplePage</div>
-const ProfilePage = () => <div>ProfilePage</div>
+
 
 export { App };
