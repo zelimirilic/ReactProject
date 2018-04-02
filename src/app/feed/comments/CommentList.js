@@ -1,11 +1,9 @@
 import React, { Component } from "react"
-import { commentService } from "../../../services/CommentService";
 import { CommentItem } from "./CommentItem"
 
+
 export class CommentList extends Component {
-    constructor(props) {
-        super(props)
-    }
+
 
     renderEmptyComments = () => {
         return (
