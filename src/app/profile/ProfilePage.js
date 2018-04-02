@@ -1,17 +1,20 @@
 import React, { Component } from "react"
 import "./ProfilePage.css"
 import { userService } from "../../services/UserService"
+import { EditProfile } from "./EditProfile";
+
 
 
 export class ProfilePage extends Component {
 
     state = {
-        profile: null
+        profile: null,
+     
     }
 
     componentDidMount = () => {
         const userId = this.props.match.params.id
-
+        
         let request;
         if (!userId) {
             request = userService.getProfile();
@@ -25,6 +28,9 @@ export class ProfilePage extends Component {
             return this.setState({ profile })
         })
     }
+        
+
+
 
 
 
@@ -42,8 +48,16 @@ export class ProfilePage extends Component {
                     <div className="profileForum"><i className="material-icons">forum</i>{this.state.profile.postsCount} Posts</div>
                     <div className="profileComments"><i className="material-icons">comment</i>{this.state.profile.commentsCount} comments</div>
                 </div>
+
+                <EditProfile profileInfo={this.state.profile}/>
+
             </div>
         )
     }
 
 }
+
+
+
+
+

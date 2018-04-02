@@ -37,6 +37,24 @@ class UserService {
 
     }
 
+    profileUpdate(data){
+        return fetch(`http://bitbookapi.azurewebsites.net/api/Profiles`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Key": "bitbook",
+                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+            },
+            body: JSON.stringify(data),
+
+        })
+        .then(response => console.log(response))
+       
+        }
+
+
+
+
 }
 
 
