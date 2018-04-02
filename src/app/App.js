@@ -8,6 +8,7 @@ import { FeedPage } from "./feed/FeedPage";
 import { PostDetails } from "./feed/PostDetails"
 import { ProfilePage } from "./profile/ProfilePage"
 
+
 class App extends Component {
   render() {
     return (
@@ -15,7 +16,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/post/:type/:id" component={PostDetails} />
-          <Route path="/people" component={PeoplePage} />
+          <Route path="/profile/:id" component={ProfilePage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/" component={FeedPage} />
         </Switch>
@@ -25,7 +26,7 @@ class App extends Component {
   }
 }
 
-const PeoplePage = () => <div>PeoplePage</div>
+
 
 
 export { App };

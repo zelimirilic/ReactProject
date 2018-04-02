@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import "./CreatePost.css";
 import { NewTextPost } from './newPosts/NewTextPost';
 import { NewVideoPost } from './newPosts/NewVideoPost';
 import { NewImagePost } from './newPosts/NewImagePost';
+
 
 class CreatePost extends Component {
 

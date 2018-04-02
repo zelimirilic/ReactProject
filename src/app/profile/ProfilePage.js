@@ -10,19 +10,27 @@ export class ProfilePage extends Component {
     }
 
     componentDidMount = () => {
-        userService.getProfile()
-            .then(profile => {
-                console.log(profile);
+        const userId = this.props.match.params.id
 
-                return this.setState({ profile })
-            })
+        let request;
+        if (!userId) {
+            request = userService.getProfile();
+        } else {
+            request = userService.getUserInfo(userId);
+        }
 
+        request.then(profile => {
+            console.log(profile);
 
+            return this.setState({ profile })
+        })
     }
+
+
 
     render() {
         if (!this.state.profile) {
-            return <p>LOading</p>
+            return <p>Loading</p>
         }
 
         return (
