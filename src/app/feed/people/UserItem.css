@@ -1,0 +1,14 @@
+.date {
+float: right;
+font-weight: bold;
+}
+
+img {
+    display: inline;
+}
+
+span {
+    margin-left: 75px;
+    margin-top: 20px;
+    font-weight: bold;
+}

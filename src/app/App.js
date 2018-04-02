@@ -4,7 +4,7 @@ import { Header } from './partials/Header';
 import { Route, Switch } from 'react-router-dom'
 import { Footer } from './partials/Footer';
 import { FeedPage } from "./feed/FeedPage";
-
+import { PeoplePage } from './feed/people/PeoplePage'
 import { PostDetails } from "./feed/PostDetails"
 import { ProfilePage } from "./profile/ProfilePage"
 
@@ -25,7 +25,7 @@ class App extends Component {
   }
 }
 
-const PeoplePage = () => <div>PeoplePage</div>
+
 
 
 export { App };
