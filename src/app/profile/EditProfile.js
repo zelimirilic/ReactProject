@@ -9,7 +9,8 @@ export class EditProfile extends Component {
     state={
         newName: this.props.profileInfo.name,
         newAbout: this.props.profileInfo.about,
-        newAvatarUrl: this.props.profileInfo.avatarUrl
+        newAvatarUrl: this.props.profileInfo.avatarUrl,
+        error: null
     }
 
     componentDidMount = () => {
@@ -20,6 +21,7 @@ export class EditProfile extends Component {
        
 
     handleCloseModal = () => {
+        console.log('asd')
         this.instance.close();
     }
 
@@ -35,12 +37,32 @@ export class EditProfile extends Component {
     }
     onImageChange = (event) =>{
         this.setState({
-            newAvatarUrl: event.target.value
+            newAvatarUrl: event.target.value,
+            error: null
         })
+    }
+
+    isValid = (value) => {
+        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png'];
+
+        for (let i = 0; i < extensionLists.length; i++) {
+            if (value.includes(extensionLists[i])) {
+                return true
+            }
+        }
+
+        return false
     }
 
     onUpdateProfile = (event) => {
         event.preventDefault();
+        const imageUrl = this.state.newAvatarUrl;
+
+        if (!this.isValid(imageUrl)) {
+            return this.setState({
+                error: 'Please select a valid image'
+            });
+        }
 
         const data = {
             id: this.props.profileInfo.id,
@@ -48,23 +70,17 @@ export class EditProfile extends Component {
             email: this.props.profileInfo.email,
             aboutShort: this.props.profileInfo.aboutShort,
             about: this.state.newAbout,
-            avatarUrl: this.state.newAvatarUrl
+            avatarUrl: imageUrl
         }
         
                 userService.profileUpdate(data)
                 .then(()=>{
-                 userService.getProfile()
+                this.props.onUpdate()
                 })
-
+               
       this.handleCloseModal()
 
  }
-
-
-          
-
-
-
 
     render() {
         return (
@@ -76,17 +92,18 @@ export class EditProfile extends Component {
                              <img className="materialboxed z-depth-2 imagePost" src={this.props.profileInfo.avatarUrl} alt="imagePost" />
                       
                                      <div className="input-field col s6">
-                                        <input onChange={this.onImageChange} id="profile-photo" type="text" className="validate"/>
+                                        <input onChange={this.onImageChange} value={this.state.newAvatarUrl} id="profile-photo" type="text" className="validate"/>
                                         <label htmlFor="first_name">Profile Photo</label>
+                                        <p className="validation-error">{this.state.error}</p>
                                       </div>
                       
                                      <div className="input-field col s6">
-                                        <input onChange={this.onNameChange} id="first_name" type="text" className="validate"/>
+                                        <input onChange={this.onNameChange} value={this.state.newName} id="first_name" type="text" className="validate"/>
                                         <label htmlFor="first_name">First Name</label>
                                       </div>
                                     
                                      <div className="input-field col s12">
-                                             <textarea onChange={this.onAboutChange} id="textarea1" className="materialize-textarea"></textarea>
+                                             <textarea onChange={this.onAboutChange} value={this.state.newAbout} id="textarea1" className="materialize-textarea"></textarea>
                                              <label htmlFor="textarea1">About</label>
                                      </div>
                                     
