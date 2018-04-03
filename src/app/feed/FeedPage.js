@@ -27,6 +27,7 @@ export class FeedPage extends Component {
             })
     }
 
+
     renderPosts = () => {
         return this.state.posts.map(post => {
             if (post.isImage()) {
@@ -60,13 +61,13 @@ export class FeedPage extends Component {
                         {this.renderPosts()}
                     </div>
                 </div>
-
                 <CreatePost refreshPostList={this.loadPosts} />
             </Fragment>
         )
     }
 
 }
+
 
 
 

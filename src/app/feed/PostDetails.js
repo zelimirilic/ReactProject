@@ -55,18 +55,35 @@ export class PostDetails extends Component {
                 })
             })
     }
+    
+    onDeletePosts = (event) => {
+        event.preventDefault()
+        
+        postService.deletePost(this.postId)
+        .then(() => {
+            postService.getData()
+            .then(myPosts => {
+                this.setState({ posts: myPosts })
+            })
+        })
+        .then()
+        
+
+    }
 
     renderPost = () => {
         if (this.state.post && this.state.post.type === "image") {
             return (
                 <div>
                     <img className="marginTop materialboxed z-depth-2" src={this.state.post.imageUrl} alt="imagePost" />
+                    <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
                 </div>)
         } else if (this.state.post && this.state.post.type === "video") {
             return (
 
                 <div className="video-container">
                     <iframe title="video" width="95%" height="315" src={this.state.post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe>
+                    <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
                 </div>
             )
         } else {
@@ -75,6 +92,7 @@ export class PostDetails extends Component {
                     <div className="card blue-grey lighten-2">
                         <div className="card-content white-text ">
                             <p>{this.state.post.text}</p>
+                            <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
                         </div>
                     </div>
                 </div>

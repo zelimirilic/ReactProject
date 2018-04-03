@@ -41,3 +41,6 @@ iframe {
 padding: 5px;
 clear: both;
 }
+.btnDelete{
+    float: left;
+}
