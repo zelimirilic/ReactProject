@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom"
-import { CreatePost } from '../CreatePost';
 import { postService } from '../../../services/PostService';
+
+
 
 export class NewVideoPost extends Component {
 

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component, Fragment } from 'react';
 import Modal from 'react-modal';
 import "./CreatePost.css";
 import { NewTextPost } from './newPosts/NewTextPost';
 import { NewVideoPost } from './newPosts/NewVideoPost';
 import { NewImagePost } from './newPosts/NewImagePost';
+
 
 class CreatePost extends Component {
 
@@ -73,7 +73,7 @@ class CreatePost extends Component {
             }
         }
         return (
-            <div>
+            <Fragment>
                 <div className="fixed-action-btn">
                     <a className="btn-floating btn-large red">
                         <i className="large material-icons"><i className="material-icons">add_circle</i></i>
@@ -95,7 +95,7 @@ class CreatePost extends Component {
                 >
                     {this.renderAddPostWindow()}
                 </Modal>
-            </div>
+            </Fragment>
 
 
 

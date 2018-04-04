@@ -6,7 +6,7 @@ class CommentService {
             headers: {
                 "Content-Type": "application/json",
                 "Key": "337335F",
-                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
             }
 
         }).then(response => response.json())
@@ -27,7 +27,7 @@ class CommentService {
             headers: {
                 "Content-Type": "application/json",
                 "Key": "337335F",
-                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
             },
             body: JSON.stringify(data)
         })
