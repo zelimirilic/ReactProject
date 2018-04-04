@@ -29,8 +29,8 @@ class PostService {
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': '337335F',
+                'SessionId': 'e92ea594-233c-4065-9e1c-da357ec486a8'
 
             }
         })
@@ -43,8 +43,8 @@ class PostService {
         return fetch('http://bitbookapi.azurewebsites.net/api/posts', {
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
             }
 
         })
@@ -81,8 +81,8 @@ class PostService {
         return fetch(`http://bitbookapi.azurewebsites.net/api/${type}/${postId}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
             }
         })
             .then(response => response.json())

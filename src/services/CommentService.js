@@ -5,8 +5,8 @@ class CommentService {
         return fetch(`http://bitbookapi.azurewebsites.net/api/Comments?postId=${postId}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
             }
 
         }).then(response => response.json())
@@ -26,8 +26,8 @@ class CommentService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "e92ea594-233c-4065-9e1c-da357ec486a8"
             },
             body: JSON.stringify(data)
         })
