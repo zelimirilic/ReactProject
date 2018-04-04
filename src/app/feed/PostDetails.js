@@ -66,7 +66,9 @@ export class PostDetails extends Component {
                 this.setState({ posts: myPosts })
             })
         })
-        .then()
+        .then(() =>{
+            window.location.href="http://localhost:3000/#/feed"
+        })
         
 
     }
@@ -76,7 +78,7 @@ export class PostDetails extends Component {
             return (
                 <div>
                     <img className="marginTop materialboxed z-depth-2" src={this.state.post.imageUrl} alt="imagePost" />
-                    <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
+                    <a  onClick={this.onDeletePosts} className="btn-flat btnDelete right">Delete</a>
                 </div>)
         } else if (this.state.post && this.state.post.type === "video") {
             return (
@@ -144,7 +146,7 @@ export class PostDetails extends Component {
                 {this.renderPost()}
 
                 <form action="#">
-                    <div className="file-field input-field">
+                    <div className="file-field input-field" style={{marginTop: "50px"}}>
                         <button onClick={this.postComment} disabled={!this.state.commentBody} className="btn waves-effect waves-light" type="submit" name="action">Send
                      <i className="material-icons right">send</i>
                         </button>

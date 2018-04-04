@@ -43,4 +43,5 @@ clear: both;
 }
 .btnDelete{
     float: left;
+    z-index:9999999
 }
