@@ -82,10 +82,11 @@ export class PostDetails extends Component {
                 </div>)
         } else if (this.state.post && this.state.post.type === "video") {
             return (
-
-                <div className="video-container">
-                    <iframe title="video" width="95%" height="315" src={this.state.post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe>
+                <div>
                     <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
+                    <div className="video-container">
+                        <iframe title="video" width="95%" height="315" src={this.state.post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe>
+                    </div>
                 </div>
             )
         } else {

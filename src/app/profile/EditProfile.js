@@ -65,7 +65,7 @@ export class EditProfile extends Component {
         }
 
         const data = {
-            id: this.props.profileInfo.id,
+           
             name: this.state.newName,
             email: this.props.profileInfo.email,
             aboutShort: this.props.profileInfo.aboutShort,

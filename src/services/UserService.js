@@ -66,7 +66,9 @@ class UserService {
             body: JSON.stringify(data),
 
         })
-        .then(response => console.log(response))
+        .then(response => {
+            return response
+        })
        
         }
 
