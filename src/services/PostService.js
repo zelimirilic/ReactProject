@@ -5,6 +5,7 @@ import { TextPost } from "../entities/Post";
 class PostService {
 
 
+
     createTextPost(body) {
         const url = "/api/TextPosts"
 
@@ -29,8 +30,8 @@ class PostService {
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': '337335F',
+                'SessionId': 'b626fcb7-83ce-46af-ac83-d3c94842fb9e'
 
             }
         })
@@ -43,8 +44,8 @@ class PostService {
         return fetch('http://bitbookapi.azurewebsites.net/api/posts', {
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
             }
 
         })
@@ -81,8 +82,8 @@ class PostService {
         return fetch(`http://bitbookapi.azurewebsites.net/api/${type}/${postId}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "337335F",
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
             }
         })
             .then(response => response.json())
@@ -101,6 +102,19 @@ class PostService {
             .catch(error => console.error("Error: ", error))
     }
 
+
+    deletePost(postId) {
+        return fetch(`http://bitbookapi.azurewebsites.net/api/Posts/${postId}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Key": "337335F",
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+            }
+        })
+        .then(response => console.log(response))
+        .catch(error => console.error("Error: ", error))
+    }
 
 }
 

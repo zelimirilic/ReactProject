@@ -47,7 +47,7 @@ export class ProfilePage extends Component {
                     <div className="profileForum"><i className="material-icons">forum</i>{this.state.profile.postsCount} Posts</div>
                     <div className="profileComments"><i className="material-icons">comment</i>{this.state.profile.commentsCount} comments</div>
                 </div>
-                </div>
+            </div>
         )
     }
 

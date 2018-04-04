@@ -24,7 +24,7 @@ export class NewImagePost extends Component {
     }
 
     isValid = (value) => {
-        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png'];
+        const extensionLists = ['jpeg', 'jpg', 'gif', 'bmp', 'png',"JPG"];
 
         for (let i = 0; i < extensionLists.length; i++) {
             if (value.includes(extensionLists[i])) {

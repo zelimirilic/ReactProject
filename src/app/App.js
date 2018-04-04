@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Header } from './partials/Header';
 import { Route, Switch } from 'react-router-dom'
@@ -15,7 +15,7 @@ import "materialize-css/dist/js/materialize.min.js"
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Header />
         <Switch>
           <Route path="/post/:type/:id" component={PostDetails} />
@@ -24,7 +24,7 @@ class App extends Component {
           <Route exact path="/feed" component={FeedPage} />
         </Switch>
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }
