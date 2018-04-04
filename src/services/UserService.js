@@ -1,4 +1,5 @@
 import { Author } from "../entities/Author"
+import { User } from "../entities/User"
 
 class UserService {
 
@@ -37,6 +38,23 @@ class UserService {
 
     }
 
+    getUserListSearch = () => {
+        return fetch(`http://bitbookapi.azurewebsites.net/api/users`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Key": "337335F",
+                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+            }
+
+        }).then(response => response.json())
+            .then(response => {
+                return response.map((user) => new User(user))
+
+            })
+
+
+    }
+    
     profileUpdate(data){
         return fetch(`http://bitbookapi.azurewebsites.net/api/Profiles`, {
             method: "PUT",
@@ -51,9 +69,6 @@ class UserService {
         .then(response => console.log(response))
        
         }
-
-
-
 
 }
 
