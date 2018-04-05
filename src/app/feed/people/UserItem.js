@@ -1,7 +1,14 @@
 import React from 'react'
 import { User } from '../../../entities/User'
 import './UserItem.css'
+
+
 export const UserItem = (props) => {
+
+
+
+
+
     return (
         <div className="col s12">
             <div className="card horizontal" >
@@ -12,7 +19,7 @@ export const UserItem = (props) => {
                 <div className="card-stacked">
                     <div className="card-content">
                         <p>{props.userInfo.aboutShort}</p>
-                        <p className='date'>{`Last post at: ` + props.userInfo.postDate}</p>
+                        <p className='date'>{`Last post at: ` + props.userInfo.getDate()}</p>
 
                     </div>
 
