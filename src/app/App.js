@@ -21,6 +21,7 @@ class App extends Component {
           <Route path="/post/:type/:id" component={PostDetails} />
           <Route path="/profile/:id" component={ProfilePage} />
           <Route path="/profile/" component={ProfilePage} />
+          <Route path="/people/" component={PeoplePage} />
           <Route exact path="/feed" component={FeedPage} />
         </Switch>
         <Footer />
