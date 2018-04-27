@@ -19,22 +19,9 @@ export class PostDetails extends Component {
         this.type = null;
     }
 
-
-
     onInit = () => {
         this.postId = this.props.match.params.id;
         this.type = this.props.match.params.type;
-    }
-
-    componentWillReceiveProps = (nextProps) => {
-        this.onInit();
-
-        postService.getPostDetails(this.type, this.postId)
-            .then(post => {
-                this.setState({
-                    post
-                })
-            })
     }
 
     componentDidMount = () => {
@@ -55,6 +42,16 @@ export class PostDetails extends Component {
                 })
             })
     }
+    componentWillReceiveProps = (nextProps) => {
+        this.onInit();
+
+        postService.getPostDetails(this.type, this.postId)
+            .then(post => {
+                this.setState({
+                    post
+                })
+            })
+    }
     
     onDeletePosts = (event) => {
         event.preventDefault()
@@ -67,7 +64,7 @@ export class PostDetails extends Component {
             })
         })
         .then(() =>{
-            window.location.href="http://localhost:3000/#/feed"
+            window.location.hash="#/feed"
         })
         
 
@@ -82,11 +79,12 @@ export class PostDetails extends Component {
                 </div>)
         } else if (this.state.post && this.state.post.type === "video") {
             return (
-
-                <div className="video-container">
-                    <iframe title="video" width="95%" height="315" src={this.state.post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe>
-                    <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
-                </div>
+                    <div>
+                        <div className="video-container">
+                            <iframe title="video" width="95%" height="315" src={this.state.post.videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe>
+                        </div>
+                        <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
+                    </div>
             )
         } else {
             return (
@@ -94,8 +92,8 @@ export class PostDetails extends Component {
                     <div className="card blue-grey lighten-2">
                         <div className="card-content white-text ">
                             <p>{this.state.post.text}</p>
-                            <a  onClick={this.onDeletePosts} className=" btn-flat btnDelete right">Delete</a>
                         </div>
+                            <a  onClick={this.onDeletePosts} style={{marginTop: "20px"}} className=" btn-flat btnDelete right">Delete</a>
                     </div>
                 </div>
             )
@@ -138,25 +136,32 @@ export class PostDetails extends Component {
 
     render() {
         if (!this.state.post) {
-            return <p>Loading...</p>
+            return (
+                <div className="spinner-layer spinner-red">
+                    <div className="circle-clipper left">
+                        <div className="circle"></div>
+                        </div><div className="gap-patch">
+                          <div className="circle"></div>
+                        </div><div className="circle-clipper right">
+                        <div className="circle"></div>
+                    </div>
+                </div>
+          )
         }
 
         return (
             <div className="container ">
                 {this.renderPost()}
 
-                <form action="#">
-                    <div className="file-field input-field" style={{marginTop: "50px"}}>
-                        <button onClick={this.postComment} disabled={!this.state.commentBody} className="btn waves-effect waves-light" type="submit" name="action">Send
-                     <i className="material-icons right">send</i>
-                        </button>
-
-
+                <div>
+                    <div className="file-field input-field " style={{marginTop: "50px"}}>
                         <div className="file-path-wrapper">
-                            <input onChange={this.getCommentValueHandler} value={this.state.commentBody} className="materialize-textarea" placeholder="Add your comments" type="text" />
+                            <input onChange={this.getCommentValueHandler} value={this.state.commentBody} className="materialize-textarea black-text" placeholder="Add your comment" type="text" />
+                        <button onClick={this.postComment} disabled={!this.state.commentBody} className="btn  waves-light right center-text" type="submit" name="action">Send
+                      </button>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <div className="col s12 m7">
                     <CommentList comments={this.state.comments} />

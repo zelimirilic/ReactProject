@@ -10,7 +10,7 @@ export class CommentList extends Component {
             <div className="card horizontal">
                 <div className="card-stacked">
                     <div className="card-content">
-                        <p>No comments</p>
+                        <p>No comments yet</p>
                     </div>
 
                 </div>

@@ -9,11 +9,10 @@ export class ProfilePage extends Component {
 
     state = {
         profile: null,
-        userId: null
-     
+    
     }
     onInit = () => {
-        this.postId = this.props.match.params.id;
+        this.userId = this.props.match.params.id;
     }
 
 
@@ -22,6 +21,11 @@ export class ProfilePage extends Component {
        this.loadProfileInfo();
         
     }
+    componentWillUpdate = (nextProps) =>{
+        this.onInit();
+        this.loadProfileInfo();
+    }
+
     loadProfileInfo = () => {
         let request;
         if (!this.userId) {
@@ -31,21 +35,20 @@ export class ProfilePage extends Component {
         }
 
         request.then(profile => {
-            console.log(profile);
 
-            return this.setState({ profile })
+        return this.setState({ profile })
         })
     }
 
     renderProfileInfo = () => {
         return (
-            <div>
+            <div className="profileBox">
                 <img className="materialboxed z-depth-2 profileImage " src={this.state.profile.avatarUrl} alt="profileImage" />
                 <h2 className="profileName">{this.state.profile.name}</h2>
                 <p className="aboutUser">{this.state.profile.about}</p>
                 <div className="details">
-                    <div className="profileForum"><i className="material-icons">forum</i>{this.state.profile.postsCount} Posts</div>
-                    <div className="profileComments"><i className="material-icons">comment</i>{this.state.profile.commentsCount} comments</div>
+                    <div className="profileForum chip grey lighten-3 z-depth-1"><i className="material-icons hide-on-small-only">forum</i>{this.state.profile.postsCount} Posts</div>
+                    <div className="profileComments chip grey lighten-3 z-depth-1"><i className="material-icons hide-on-small-only">comment</i>{this.state.profile.commentsCount} comments</div>
                 </div>
             </div>
         )

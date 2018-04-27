@@ -1,6 +1,7 @@
 import { VideoPost } from "../entities/Post";
 import { ImagePost } from "../entities/Post";
 import { TextPost } from "../entities/Post";
+import { urlBase, header } from '../shared/constants'
 
 class PostService {
 
@@ -24,14 +25,13 @@ class PostService {
     }
 
     createPost(body, url) {
-        const fullUrl = "http://bitbookapi.azurewebsites.net" + url;
+        const fullUrl = `${urlBase}` + url;
         return fetch(fullUrl, {
             method: "POST",
             body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': '337335F',
-                'SessionId': 'b626fcb7-83ce-46af-ac83-d3c94842fb9e'
+            headers:{
+               ...header,
+               "SessionId": sessionStorage.getItem("sessionId")
             }
         })
             .catch(error => {
@@ -40,11 +40,11 @@ class PostService {
     }
 
     getData() {
-        return fetch('http://bitbookapi.azurewebsites.net/api/posts', {
-            headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+        return fetch(`${urlBase}/api/posts`, {
+            headers:{
+            ...header,
+            "SessionId": sessionStorage.getItem("sessionId")
+
             }
 
         })
@@ -78,12 +78,11 @@ class PostService {
             type = "TextPosts"
         }
 
-        return fetch(`http://bitbookapi.azurewebsites.net/api/${type}/${postId}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
-            }
+        return fetch(`${urlBase}/api/${type}/${postId}`, {
+            headers:{
+                ...header,
+                "SessionId": sessionStorage.getItem("sessionId")
+             }
         })
             .then(response => response.json())
             .then(response => {
@@ -103,13 +102,13 @@ class PostService {
 
 
     deletePost(postId) {
-        return fetch(`http://bitbookapi.azurewebsites.net/api/Posts/${postId}`,{
+        return fetch(`${urlBase}/api/Posts/${postId}`,{
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
-            }
+            headers:{
+                ...header,
+                "SessionId": sessionStorage.getItem("sessionId")
+    
+                }
         })
         .then(response => console.log(response))
         .catch(error => console.error("Error: ", error))

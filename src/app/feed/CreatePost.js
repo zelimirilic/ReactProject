@@ -67,19 +67,22 @@ class CreatePost extends Component {
     render() {
         const modalStyle = {
             content: {
-                width: "45%",
-                height: "30%",
-                margin: '250px auto'
+                width: "50%",
+                height: "48%",
+                margin: '150px auto',
+                paddingLeft: "50px"
+                
             }
+         
         }
         return (
             <Fragment>
                 <div className="fixed-action-btn">
-                    <a className="btn-floating btn-large red">
+                    <a className="btn-floating btn-large  orange accent-3">
                         <i className="large material-icons"><i className="material-icons">add_circle</i></i>
                     </a>
                     <ul>
-                        <li><a className="btn-floating red" onClick={this.openModal} ><i id='video' className="material-icons">ondemand_video</i></a></li>
+                        <li><a className="btn-floating cyan darken-2" onClick={this.openModal} ><i id='video' className="material-icons">ondemand_video</i></a></li>
                         <li><a className="btn-floating green" onClick={this.openModal}><i id='image' className="material-icons">image</i></a></li>
                         <li><a className="btn-floating blue" onClick={this.openModal}><i id='text' className="material-icons">text_fields</i></a></li>
                     </ul>

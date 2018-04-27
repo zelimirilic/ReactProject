@@ -8,6 +8,12 @@ img {
     height: auto;
     margin: 0 auto
 }
+.postBox{
+    background-color: whitesmoke
+}
+div .card-action{
+    padding:3px;
+}
 
 iframe {
 
@@ -35,13 +41,30 @@ iframe {
     margin-top: 20px;
 }
 .commDiv{
-    height: 90px;
+    height: 100px;
 }
 .textUser{
 padding: 5px;
-clear: both;
+margin-left: 10px
 }
 .btnDelete{
     float: left;
     z-index:9999999
+}
+.character-counter{
+    display: none
+}
+.searchBar{
+    margin-top:20px
+}
+.postType{
+    width: 30%;
+    float: right;
+    
+}
+nav{
+    margin-bottom: 20px;
+}
+li > span{
+    margin: 5px;
 }

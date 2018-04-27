@@ -1,17 +1,18 @@
-import { Comment } from "../entities/Comment"
+import { Comment } from "../entities/Comment";
+import { urlBase, header } from '../shared/constants'
 
 class CommentService {
     getCommentData(postId) {
-        return fetch(`http://bitbookapi.azurewebsites.net/api/Comments?postId=${postId}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+        return fetch(`${urlBase}/api/Comments?postId=${postId}`, {
+            headers:{
+                ...header,
+                "SessionId": sessionStorage.getItem("sessionId")
+    
             }
 
         }).then(response => response.json())
             .then(response => {
-                return response.map(comment => {
+             return response.map(comment => {
                     return new Comment(comment)
 
                 })
@@ -22,12 +23,12 @@ class CommentService {
 
     }
     postCommentData(data) {
-        return fetch('http://bitbookapi.azurewebsites.net/api/Comments', {
+        return fetch(`${urlBase}/api/Comments`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+            headers:{
+                ...header,
+                "SessionId": sessionStorage.getItem("sessionId")
+    
             },
             body: JSON.stringify(data)
         })

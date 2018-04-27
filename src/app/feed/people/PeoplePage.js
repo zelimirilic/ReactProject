@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import { userService } from "../../../services/UserService";
 import { UserItem } from './UserItem'
 import { Search } from "../../partials/Search"
-import { Input } from "../../partials/Input"
+
 
 export class PeoplePage extends Component {
     state = {
@@ -30,23 +30,14 @@ export class PeoplePage extends Component {
     }
 
     onChangeInputValue = (event) => {
-        //        Milos, Marko
-        // m      Milos, Marko
-        // ma     Milos, Marko
-        // m      Marko
-
-        this.setState({
+     this.setState({
             searchValue: event.target.value
         })
     }
 
     searchUsers = (nextState) => {
         const searchValue = nextState.searchValue;
-        const { users, searchedUsers } = nextState;//????????
-
-        // const users = this.state.users;
-        // const searchedUsers = this.state.searchedUsers;
-
+        const { users } = nextState;
         const filteredUsers = users.filter(user => {
             return user.name.toLowerCase().includes(searchValue.toLowerCase().trim())
         })
@@ -61,11 +52,12 @@ export class PeoplePage extends Component {
     }
 
     renderUsers = () => {
-        // const filteredUsers = this.filterUsers(this.state.users);
-
+    
         return this.state.searchedUsers.map(user => {
+         
+       
             return (
-                <Link to={`people/id`} key={user.id}>
+                <Link to={`/profile/${user.userId}`} key={user.userId}>
                     <UserItem userInfo={user} />
                 </Link>
             )

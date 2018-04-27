@@ -58,7 +58,7 @@ export class NewVideoPost extends Component {
                 <input onChange={this.changeBodyHandler} id="textarea3" className="materialize-textarea"></input>
 
                 <p className="validation-error">{this.state.error}</p>
-                <button className='light-blue' onClick={this.fetchPost}>Post</button>
+                <button className='waves-effect waves-light btn right' onClick={this.fetchPost}>Post</button>
             </div>
         )
     }

@@ -4,10 +4,10 @@ import "./footer.css";
 
 const Footer = () => {
     return (
-        <footer className="page-footer deep-purple lighten-2">
+        <footer className="page-footer teal darken-3">
         <div className="footer-copyright">
           <div className="container">
-          © 2014 Copyright Text
+          <p>© Copyright BitStudent 2018</p>
           </div>
         </div>
       </footer>

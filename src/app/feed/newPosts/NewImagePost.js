@@ -52,8 +52,6 @@ export class NewImagePost extends Component {
         postService.createImagePost(body)
             .then(() => this.props.onPostCreate())
 
-
-
     }
 
 
@@ -65,7 +63,7 @@ export class NewImagePost extends Component {
                 <h6>Post content</h6>
                 <input onChange={this.changeBodyHandler} id="textarea2" className="materialize-textarea"></input>
                 <p className="validation-error">{this.state.error}</p>
-                <button onClick={this.fetchPost} className='light-blue' >Post</button>
+                <button onClick={this.fetchPost} className='waves-effect waves-light btn right'>Post</button>
 
             </div>
         )

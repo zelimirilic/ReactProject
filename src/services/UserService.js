@@ -1,14 +1,14 @@
-import { Author } from "../entities/Author"
-import { User } from "../entities/User"
+import { Author } from "../entities/Author";
+import { User } from "../entities/User";
+import { urlBase, header } from '../shared/constants';
 
 class UserService {
 
     getProfile() {
-        return fetch(`http://bitbookapi.azurewebsites.net/api/profile`, {
+        return fetch(`${urlBase}/api/profile`, {
             headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+              ...header,
+              "SessionId": sessionStorage.getItem("sessionId")
             }
 
         }).then(response => response.json())
@@ -19,11 +19,10 @@ class UserService {
     }
 
     getUserInfo(authorId) {
-        return fetch(`http://bitbookapi.azurewebsites.net/api/users/${authorId}`, {
+        return fetch(`${urlBase}/api/users/${authorId}`, {
             headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+               ...header,
+               "SessionId": sessionStorage.getItem("sessionId")
             }
 
         }).then(response => response.json())
@@ -39,11 +38,10 @@ class UserService {
     }
 
     getUserListSearch = () => {
-        return fetch(`http://bitbookapi.azurewebsites.net/api/users`, {
+        return fetch(`${urlBase}/api/users`, {
             headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+               ...header,
+               "SessionId": sessionStorage.getItem("sessionId")
             }
 
         }).then(response => response.json())
@@ -56,12 +54,11 @@ class UserService {
     }
     
     profileUpdate(data){
-        return fetch(`http://bitbookapi.azurewebsites.net/api/Profiles`, {
+        return fetch(`${urlBase}/api/Profiles`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json",
-                "Key": "337335F",
-                "SessionId": "b626fcb7-83ce-46af-ac83-d3c94842fb9e"
+              ...header,
+              "SessionId": sessionStorage.getItem("sessionId")
             },
             body: JSON.stringify(data),
 

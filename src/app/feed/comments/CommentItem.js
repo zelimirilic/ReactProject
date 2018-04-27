@@ -14,9 +14,7 @@ export class CommentItem extends Component {
     loadAuthor = () => {
         userService.getUserInfo(this.props.authorId)
             .then(author => {
-                console.log(author);
-
-                this.setState({
+             this.setState({
                     author
                 })
             })

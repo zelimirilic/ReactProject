@@ -42,7 +42,7 @@ export class NewTextPost extends Component {
                 <h4 ref={subtitle => this.props.setSubtitle(subtitle)}>New post</h4>
                 <h6>Post content</h6>
                 <input id="textarea1" onChange={this.changeBodyHandler} type="text" value={this.state.newBody} className="materialize-textarea"></input>
-                <button onClick={this.fetchPost} className='light-blue'>Post</button>
+                <button onClick={this.fetchPost} className='waves-effect waves-light btn right'>Post</button>
             </div>
         )
     }
