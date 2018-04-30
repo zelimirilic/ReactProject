@@ -29,8 +29,8 @@ class AuthenticationService {
         sessionStorage.setItem("sessionId", data)
     }
 
-    isUserAuthenticated = () => {
-        return !!sessionStorage.getItem("sessionId");
+    isAuthenticated = () => {
+      return !!sessionStorage.getItem("sessionId");
     }
 
     logout = () => {

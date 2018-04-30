@@ -1,9 +1,15 @@
 .login-background{
     background-image: url("./Background (1).png") ;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: repeat-x;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
 a{
     text-decoration: none;
     color: #000;
@@ -15,11 +21,23 @@ a:hover{
 .form{
     background: rgba(240, 240, 240, 0.6);
     padding: 30px;
-    max-width: 30%;
+    width: 30%;
     margin: 7%;
     border-radius: 4px;
     box-shadow: 0 2px 5px 2px rgba(19, 35, 47, 0.3);
     transition: .5s ease;
+}
+@media only screen and (max-width: 992px) {
+    .form {
+        width: 60%;
+        margin: 18%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .form {
+        width: 90%;
+        margin: 5%;
+    }
 }
 .form:hover{
     box-shadow: 0 0px 10px 10px rgba(122, 122, 122, 0.2)

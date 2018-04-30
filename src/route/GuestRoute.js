@@ -3,15 +3,14 @@ import React, { Component } from "react";
 
 
 export default ComposedComponent =>
+
   class Auth extends Component {
     componentDidMount = () => {
-      if (authenticationService.isUserAuthenticated()) {
-        console.log("da")
+      if (authenticationService.isAuthenticated()) {
+        console.log("yes")
     } else 
-      console.log("ne");
+      console.log("no");
     }
-
-
     render() {
       return <ComposedComponent {...this.props} />;
     }
